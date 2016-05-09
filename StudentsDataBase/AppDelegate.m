@@ -24,7 +24,7 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NotFirstLoad"];
     }
     
-    [[AEDataManager sharedManager] printAllObjectsFromDatabase];
+    //[[AEDataManager sharedManager] printAllObjectsFromDatabase];
     
     return YES;
 }

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		84A5E8811CE0D6D5004ED04F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E8801CE0D6D5004ED04F /* main.m */; };
 		84A5E8841CE0D6D5004ED04F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E8831CE0D6D5004ED04F /* AppDelegate.m */; };
-		84A5E8871CE0D6D5004ED04F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E8861CE0D6D5004ED04F /* ViewController.m */; };
 		84A5E88A1CE0D6D5004ED04F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A5E8881CE0D6D5004ED04F /* Main.storyboard */; };
 		84A5E88D1CE0D6D5004ED04F /* StudentsDataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E88B1CE0D6D5004ED04F /* StudentsDataBase.xcdatamodeld */; };
 		84A5E88F1CE0D6D6004ED04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84A5E88E1CE0D6D6004ED04F /* Assets.xcassets */; };
@@ -20,6 +19,10 @@
 		84A5E9051CE0EE19004ED04F /* AECourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E8FF1CE0EE19004ED04F /* AECourse.m */; };
 		84A5E9141CE0EFA8004ED04F /* AEStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E9131CE0EFA8004ED04F /* AEStudent.m */; };
 		84A5E9171CE0F03F004ED04F /* AECar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E9161CE0F03F004ED04F /* AECar.m */; };
+		84A5E91A1CE1156F004ED04F /* UniversitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E9191CE1156F004ED04F /* UniversitiesViewController.m */; };
+		84A5E91F1CE115F7004ED04F /* StudentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E91E1CE115F7004ED04F /* StudentsTableViewController.m */; };
+		84A5E94B1CE119C1004ED04F /* CoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E94A1CE119C1004ED04F /* CoreDataViewController.m */; };
+		84A5E94E1CE13B11004ED04F /* StudentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E94D1CE13B11004ED04F /* StudentDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +30,6 @@
 		84A5E8801CE0D6D5004ED04F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84A5E8821CE0D6D5004ED04F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		84A5E8831CE0D6D5004ED04F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		84A5E8851CE0D6D5004ED04F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		84A5E8861CE0D6D5004ED04F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		84A5E8891CE0D6D5004ED04F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84A5E88C1CE0D6D5004ED04F /* StudentsDataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StudentsDataBase.xcdatamodel; sourceTree = "<group>"; };
 		84A5E88E1CE0D6D6004ED04F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -46,6 +47,14 @@
 		84A5E9131CE0EFA8004ED04F /* AEStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEStudent.m; sourceTree = "<group>"; };
 		84A5E9151CE0F03F004ED04F /* AECar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AECar.h; sourceTree = "<group>"; };
 		84A5E9161CE0F03F004ED04F /* AECar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AECar.m; sourceTree = "<group>"; };
+		84A5E9181CE1156F004ED04F /* UniversitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UniversitiesViewController.h; path = ../UniversitiesViewController.h; sourceTree = "<group>"; };
+		84A5E9191CE1156F004ED04F /* UniversitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UniversitiesViewController.m; path = ../UniversitiesViewController.m; sourceTree = "<group>"; };
+		84A5E91D1CE115F7004ED04F /* StudentsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentsTableViewController.h; sourceTree = "<group>"; };
+		84A5E91E1CE115F7004ED04F /* StudentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentsTableViewController.m; sourceTree = "<group>"; };
+		84A5E9491CE119C1004ED04F /* CoreDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataViewController.h; sourceTree = "<group>"; };
+		84A5E94A1CE119C1004ED04F /* CoreDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataViewController.m; sourceTree = "<group>"; };
+		84A5E94C1CE13B11004ED04F /* StudentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentDetailViewController.h; sourceTree = "<group>"; };
+		84A5E94D1CE13B11004ED04F /* StudentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,18 +87,16 @@
 		84A5E87E1CE0D6D5004ED04F /* StudentsDataBase */ = {
 			isa = PBXGroup;
 			children = (
+				84A5E91B1CE11584004ED04F /* ViewControllers */,
+				84A5E91C1CE11597004ED04F /* Classes */,
+				84A5E89F1CE0D9A8004ED04F /* Entities classes */,
 				84A5E8821CE0D6D5004ED04F /* AppDelegate.h */,
 				84A5E8831CE0D6D5004ED04F /* AppDelegate.m */,
-				84A5E8E81CE0EBAD004ED04F /* AEDataManager.h */,
-				84A5E8E91CE0EBAD004ED04F /* AEDataManager.m */,
-				84A5E8851CE0D6D5004ED04F /* ViewController.h */,
-				84A5E8861CE0D6D5004ED04F /* ViewController.m */,
 				84A5E8881CE0D6D5004ED04F /* Main.storyboard */,
 				84A5E88E1CE0D6D6004ED04F /* Assets.xcassets */,
 				84A5E8901CE0D6D6004ED04F /* LaunchScreen.storyboard */,
 				84A5E8931CE0D6D6004ED04F /* Info.plist */,
 				84A5E88B1CE0D6D5004ED04F /* StudentsDataBase.xcdatamodeld */,
-				84A5E89F1CE0D9A8004ED04F /* Entities classes */,
 				84A5E87F1CE0D6D5004ED04F /* Supporting Files */,
 			);
 			path = StudentsDataBase;
@@ -118,6 +125,30 @@
 				84A5E9161CE0F03F004ED04F /* AECar.m */,
 			);
 			name = "Entities classes";
+			sourceTree = "<group>";
+		};
+		84A5E91B1CE11584004ED04F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				84A5E9491CE119C1004ED04F /* CoreDataViewController.h */,
+				84A5E94A1CE119C1004ED04F /* CoreDataViewController.m */,
+				84A5E9181CE1156F004ED04F /* UniversitiesViewController.h */,
+				84A5E9191CE1156F004ED04F /* UniversitiesViewController.m */,
+				84A5E94C1CE13B11004ED04F /* StudentDetailViewController.h */,
+				84A5E94D1CE13B11004ED04F /* StudentDetailViewController.m */,
+				84A5E91D1CE115F7004ED04F /* StudentsTableViewController.h */,
+				84A5E91E1CE115F7004ED04F /* StudentsTableViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		84A5E91C1CE11597004ED04F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				84A5E8E81CE0EBAD004ED04F /* AEDataManager.h */,
+				84A5E8E91CE0EBAD004ED04F /* AEDataManager.m */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,10 +225,13 @@
 				84A5E88D1CE0D6D5004ED04F /* StudentsDataBase.xcdatamodeld in Sources */,
 				84A5E9051CE0EE19004ED04F /* AECourse.m in Sources */,
 				84A5E9171CE0F03F004ED04F /* AECar.m in Sources */,
-				84A5E8871CE0D6D5004ED04F /* ViewController.m in Sources */,
+				84A5E91F1CE115F7004ED04F /* StudentsTableViewController.m in Sources */,
 				84A5E9141CE0EFA8004ED04F /* AEStudent.m in Sources */,
+				84A5E94B1CE119C1004ED04F /* CoreDataViewController.m in Sources */,
+				84A5E94E1CE13B11004ED04F /* StudentDetailViewController.m in Sources */,
 				84A5E8EA1CE0EBAD004ED04F /* AEDataManager.m in Sources */,
 				84A5E9011CE0EE19004ED04F /* AEUniversity.m in Sources */,
+				84A5E91A1CE1156F004ED04F /* UniversitiesViewController.m in Sources */,
 				84A5E8F31CE0EDEF004ED04F /* AEObject.m in Sources */,
 				84A5E8841CE0D6D5004ED04F /* AppDelegate.m in Sources */,
 				84A5E8811CE0D6D5004ED04F /* main.m in Sources */,

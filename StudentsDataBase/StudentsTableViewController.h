@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  StudentsTableViewController.h
 //  StudentsDataBase
 //
 //  Created by Admin on 09.05.16.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface StudentsTableViewController : UITableViewController
 
 @end
-
