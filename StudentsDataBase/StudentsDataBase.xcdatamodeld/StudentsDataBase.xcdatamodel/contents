@@ -1,4 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15C50" minimumToolsVersion="Automatic">
+    <entity name="AECar" representedClassName="AECar" parentEntity="AEObject" syncable="YES">
+        <attribute name="model" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AEStudent" inverseName="car" inverseEntity="AEStudent" syncable="YES"/>
+    </entity>
+    <entity name="AECourse" representedClassName="AECourse" parentEntity="AEObject" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="students" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AEStudent" inverseName="courses" inverseEntity="AEStudent" syncable="YES"/>
+        <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AEUniversity" inverseName="courses" inverseEntity="AEUniversity" syncable="YES"/>
+    </entity>
+    <entity name="AEObject" representedClassName="AEObject" syncable="YES"/>
+    <entity name="AEStudent" representedClassName="AEStudent" parentEntity="AEObject" syncable="YES">
+        <attribute name="dateOfBirth" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="score" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="car" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="AECar" inverseName="owner" inverseEntity="AECar" syncable="YES"/>
+        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AECourse" inverseName="students" inverseEntity="AECourse" syncable="YES"/>
+        <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AEUniversity" inverseName="students" inverseEntity="AEUniversity" syncable="YES"/>
+    </entity>
+    <entity name="AEUniversity" representedClassName="AEUniversity" parentEntity="AEObject" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AECourse" inverseName="university" inverseEntity="AECourse" syncable="YES"/>
+        <relationship name="students" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AEStudent" inverseName="university" inverseEntity="AEStudent" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="AEStudent" positionX="52" positionY="-1755" width="128" height="148"/>
+        <element name="AECar" positionX="322" positionY="-1710" width="128" height="73"/>
+        <element name="AEObject" positionX="-38" positionY="-2032" width="128" height="43"/>
+        <element name="AEUniversity" positionX="-342" positionY="-1695" width="128" height="88"/>
+        <element name="AECourse" positionX="-135" positionY="-1744" width="128" height="88"/>
+    </elements>
 </model>

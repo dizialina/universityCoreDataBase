@@ -14,6 +14,12 @@
 		84A5E88D1CE0D6D5004ED04F /* StudentsDataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E88B1CE0D6D5004ED04F /* StudentsDataBase.xcdatamodeld */; };
 		84A5E88F1CE0D6D6004ED04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84A5E88E1CE0D6D6004ED04F /* Assets.xcassets */; };
 		84A5E8921CE0D6D6004ED04F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A5E8901CE0D6D6004ED04F /* LaunchScreen.storyboard */; };
+		84A5E8EA1CE0EBAD004ED04F /* AEDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E8E91CE0EBAD004ED04F /* AEDataManager.m */; };
+		84A5E8F31CE0EDEF004ED04F /* AEObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E8F11CE0EDEF004ED04F /* AEObject.m */; };
+		84A5E9011CE0EE19004ED04F /* AEUniversity.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E8F71CE0EE19004ED04F /* AEUniversity.m */; };
+		84A5E9051CE0EE19004ED04F /* AECourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E8FF1CE0EE19004ED04F /* AECourse.m */; };
+		84A5E9141CE0EFA8004ED04F /* AEStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E9131CE0EFA8004ED04F /* AEStudent.m */; };
+		84A5E9171CE0F03F004ED04F /* AECar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A5E9161CE0F03F004ED04F /* AECar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +34,18 @@
 		84A5E88E1CE0D6D6004ED04F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84A5E8911CE0D6D6004ED04F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84A5E8931CE0D6D6004ED04F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84A5E8E81CE0EBAD004ED04F /* AEDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEDataManager.h; sourceTree = "<group>"; };
+		84A5E8E91CE0EBAD004ED04F /* AEDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEDataManager.m; sourceTree = "<group>"; };
+		84A5E8F01CE0EDEF004ED04F /* AEObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEObject.h; path = ../AEObject.h; sourceTree = "<group>"; };
+		84A5E8F11CE0EDEF004ED04F /* AEObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEObject.m; path = ../AEObject.m; sourceTree = "<group>"; };
+		84A5E8F61CE0EE19004ED04F /* AEUniversity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEUniversity.h; sourceTree = "<group>"; };
+		84A5E8F71CE0EE19004ED04F /* AEUniversity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEUniversity.m; sourceTree = "<group>"; };
+		84A5E8FE1CE0EE19004ED04F /* AECourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AECourse.h; sourceTree = "<group>"; };
+		84A5E8FF1CE0EE19004ED04F /* AECourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AECourse.m; sourceTree = "<group>"; };
+		84A5E9121CE0EFA8004ED04F /* AEStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEStudent.h; sourceTree = "<group>"; };
+		84A5E9131CE0EFA8004ED04F /* AEStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEStudent.m; sourceTree = "<group>"; };
+		84A5E9151CE0F03F004ED04F /* AECar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AECar.h; sourceTree = "<group>"; };
+		84A5E9161CE0F03F004ED04F /* AECar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AECar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +80,8 @@
 			children = (
 				84A5E8821CE0D6D5004ED04F /* AppDelegate.h */,
 				84A5E8831CE0D6D5004ED04F /* AppDelegate.m */,
+				84A5E8E81CE0EBAD004ED04F /* AEDataManager.h */,
+				84A5E8E91CE0EBAD004ED04F /* AEDataManager.m */,
 				84A5E8851CE0D6D5004ED04F /* ViewController.h */,
 				84A5E8861CE0D6D5004ED04F /* ViewController.m */,
 				84A5E8881CE0D6D5004ED04F /* Main.storyboard */,
@@ -69,6 +89,7 @@
 				84A5E8901CE0D6D6004ED04F /* LaunchScreen.storyboard */,
 				84A5E8931CE0D6D6004ED04F /* Info.plist */,
 				84A5E88B1CE0D6D5004ED04F /* StudentsDataBase.xcdatamodeld */,
+				84A5E89F1CE0D9A8004ED04F /* Entities classes */,
 				84A5E87F1CE0D6D5004ED04F /* Supporting Files */,
 			);
 			path = StudentsDataBase;
@@ -80,6 +101,23 @@
 				84A5E8801CE0D6D5004ED04F /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		84A5E89F1CE0D9A8004ED04F /* Entities classes */ = {
+			isa = PBXGroup;
+			children = (
+				84A5E8F01CE0EDEF004ED04F /* AEObject.h */,
+				84A5E8F11CE0EDEF004ED04F /* AEObject.m */,
+				84A5E8F61CE0EE19004ED04F /* AEUniversity.h */,
+				84A5E8F71CE0EE19004ED04F /* AEUniversity.m */,
+				84A5E8FE1CE0EE19004ED04F /* AECourse.h */,
+				84A5E8FF1CE0EE19004ED04F /* AECourse.m */,
+				84A5E9121CE0EFA8004ED04F /* AEStudent.h */,
+				84A5E9131CE0EFA8004ED04F /* AEStudent.m */,
+				84A5E9151CE0F03F004ED04F /* AECar.h */,
+				84A5E9161CE0F03F004ED04F /* AECar.m */,
+			);
+			name = "Entities classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,7 +192,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				84A5E88D1CE0D6D5004ED04F /* StudentsDataBase.xcdatamodeld in Sources */,
+				84A5E9051CE0EE19004ED04F /* AECourse.m in Sources */,
+				84A5E9171CE0F03F004ED04F /* AECar.m in Sources */,
 				84A5E8871CE0D6D5004ED04F /* ViewController.m in Sources */,
+				84A5E9141CE0EFA8004ED04F /* AEStudent.m in Sources */,
+				84A5E8EA1CE0EBAD004ED04F /* AEDataManager.m in Sources */,
+				84A5E9011CE0EE19004ED04F /* AEUniversity.m in Sources */,
+				84A5E8F31CE0EDEF004ED04F /* AEObject.m in Sources */,
 				84A5E8841CE0D6D5004ED04F /* AppDelegate.m in Sources */,
 				84A5E8811CE0D6D5004ED04F /* main.m in Sources */,
 			);
