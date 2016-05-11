@@ -15,6 +15,10 @@
 #import "AEUniversity.h"
 
 @interface UniversitiesViewController () {
+    
+    NSString *newObjectName;
+    NSMutableArray *newStudentProperties;
+    UIAlertAction *currentCreateAction;
 
 }
 
@@ -44,17 +48,10 @@
             self.navigationItem.title = self.currentCourse.name;
             break;
     }
+    
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showAlertView)];
+    self.navigationItem.rightBarButtonItems = @[self.editButtonItem, addButton];
 
-    
-    /*
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
-    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    */
-
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,26 +59,48 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-- (void)insertNewObject:(id)sender {
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+- (void)insertNewObject {
     
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
+    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+    
+    switch (self.dataMode) {
+        case kAllList: {
+            
+            AEUniversity *newUniversity = [NSEntityDescription insertNewObjectForEntityForName:@"AEUniversity" inManagedObjectContext:context];
+            if (newObjectName.length > 0) {
+                newUniversity.name = newObjectName;
+                newObjectName = nil;
+            }
+            break;
+        }
+        case kUniversity: {
+            
+            AECourse *newCourse = [NSEntityDescription insertNewObjectForEntityForName:@"AECourse" inManagedObjectContext:context];
+            if (newObjectName.length > 0) {
+                newCourse.name = newObjectName;
+                newObjectName = nil;
+                newCourse.university = self.currentUniversity;
+            }
+            break;
+        }
+        case kCourse: {
+            
+            AEStudent *newStudent = [NSEntityDescription insertNewObjectForEntityForName:@"AEStudent" inManagedObjectContext:context];
+            newStudent.firstName = @"Aaaaa";
+            newStudent.lastName = @"Bbbbb";
+            [newStudent addCoursesObject:self.currentCourse];
+            break;
+        }
+    }
+
     
     // Save the context.
     NSError *error = nil;
     if (![context save:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        NSLog(@"Unresolved error adding new object: %@, %@", error, [error userInfo]);
         abort();
     }
 }
-*/
 
 # pragma mark - Getters
 
@@ -221,5 +240,68 @@
     
 }
 
+- (void)showAlertView {
+    
+    NSString *doneTitle = @"Create";
+    NSString *title;
+    
+    switch (self.dataMode) {
+        case kAllList:
+            title = @"New university name";
+            break;
+        case kUniversity:
+            title = @"New course name";
+            break;
+        case kCourse:
+            title = @"New student name";
+            break;
+    }
+
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:@"Write the name of your new object:" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *createAction = [UIAlertAction actionWithTitle:doneTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        newObjectName = alertController.textFields.firstObject.text;
+        [self insertNewObject];
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alertController addAction:createAction];
+    [alertController addAction:cancelAction];
+    createAction.enabled = false;
+    currentCreateAction = createAction;
+    
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"Object name";
+        [textField addTarget:self action:@selector(audioFileNameDidChange:) forControlEvents:UIControlEventEditingChanged];
+    }];
+    /*
+    if (self.dataMode == kCourse) {
+        [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            textField.placeholder = @"Object name";
+            [textField addTarget:self action:@selector(audioFileNameDidChange:) forControlEvents:UIControlEventEditingChanged];
+        }];
+        [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            textField.placeholder = @"Object name";
+            [textField addTarget:self action:@selector(audioFileNameDidChange:) forControlEvents:UIControlEventEditingChanged];
+        }];
+        [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            textField.placeholder = @"Object name";
+            [textField addTarget:self action:@selector(audioFileNameDidChange:) forControlEvents:UIControlEventEditingChanged];
+        }];
+        [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            textField.placeholder = @"Object name";
+            [textField addTarget:self action:@selector(audioFileNameDidChange:) forControlEvents:UIControlEventEditingChanged];
+        }];
+    }
+    */
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
+
+- (void) audioFileNameDidChange:(UITextField*) textField {
+    currentCreateAction.enabled = YES;
+}
 
 @end
