@@ -159,8 +159,18 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Courses:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWg-h1-bQe">
+                                <rect key="frame" x="170" y="365" width="108" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="108" id="aMc-ah-g1s"/>
+                                    <constraint firstAttribute="height" constant="21" id="bMu-60-pZr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmy-IQ-uO5">
-                                <rect key="frame" x="243" y="377" width="114" height="30"/>
+                                <rect key="frame" x="243" y="518" width="114" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="IXC-3E-12E"/>
                                     <constraint firstAttribute="width" constant="114" id="hiX-nu-tLH"/>
@@ -170,6 +180,36 @@
                                     <action selector="saveChanges:" destination="riy-NJ-lIu" eventType="touchUpInside" id="Nbq-Fw-8DT"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="24" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Inj-fN-InB">
+                                <rect key="frame" x="286" y="365" width="149" height="145"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="149" id="xto-th-hoz"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="courseCell" textLabel="bEy-io-Ms2" rowHeight="24" style="IBUITableViewCellStyleDefault" id="EQZ-BM-Yac">
+                                        <rect key="frame" x="0.0" y="28" width="149" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EQZ-BM-Yac" id="RCB-FA-MmA">
+                                            <rect key="frame" x="0.0" y="0.0" width="149" height="23"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bEy-io-Ms2">
+                                                    <rect key="frame" x="15" y="0.0" width="119" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="riy-NJ-lIu" id="FsL-Mp-Ubm"/>
+                                    <outlet property="delegate" destination="riy-NJ-lIu" id="jj6-Vu-MxT"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -177,7 +217,7 @@
                             <constraint firstItem="f5P-oq-Riw" firstAttribute="centerX" secondItem="Dwg-M2-mJt" secondAttribute="centerX" id="137-SB-ZZM"/>
                             <constraint firstItem="0aY-3d-T43" firstAttribute="width" secondItem="gRV-de-LKH" secondAttribute="width" id="1p1-Qt-hZC"/>
                             <constraint firstItem="Igj-03-wpN" firstAttribute="top" secondItem="YX8-Az-U4w" secondAttribute="bottom" constant="14" id="221-EG-K9C"/>
-                            <constraint firstItem="rmy-IQ-uO5" firstAttribute="top" secondItem="LBY-jc-qsn" secondAttribute="bottom" constant="19" id="58f-6s-J7g"/>
+                            <constraint firstItem="rmy-IQ-uO5" firstAttribute="top" secondItem="Inj-fN-InB" secondAttribute="bottom" constant="8" id="6JH-AK-L4t"/>
                             <constraint firstItem="js6-wN-Pdp" firstAttribute="width" secondItem="0aY-3d-T43" secondAttribute="width" id="7pJ-Od-S3Q"/>
                             <constraint firstItem="M3X-AE-Ld7" firstAttribute="width" secondItem="f5P-oq-Riw" secondAttribute="width" id="86l-hx-OAB"/>
                             <constraint firstItem="M3X-AE-Ld7" firstAttribute="top" secondItem="f5P-oq-Riw" secondAttribute="bottom" constant="5" id="8tM-ih-fBZ"/>
@@ -190,12 +230,15 @@
                             <constraint firstItem="gRV-de-LKH" firstAttribute="width" secondItem="Igj-03-wpN" secondAttribute="width" id="GXv-qz-F9K"/>
                             <constraint firstItem="ZrC-Hr-nOX" firstAttribute="centerY" secondItem="4aY-Tm-N11" secondAttribute="centerY" id="Jkc-ue-N5r"/>
                             <constraint firstItem="f5P-oq-Riw" firstAttribute="height" secondItem="Dwg-M2-mJt" secondAttribute="height" id="M0n-t0-qtT"/>
+                            <constraint firstItem="aWg-h1-bQe" firstAttribute="width" secondItem="js6-wN-Pdp" secondAttribute="width" id="MWc-EU-llW"/>
+                            <constraint firstItem="Inj-fN-InB" firstAttribute="centerX" secondItem="tcx-9g-ffy" secondAttribute="centerX" constant="60.5" id="Nmh-pk-MXr"/>
                             <constraint firstItem="5Kc-WG-FBJ" firstAttribute="top" secondItem="M3X-AE-Ld7" secondAttribute="bottom" constant="5" id="Nzm-8J-sYP"/>
                             <constraint firstItem="Dwg-M2-mJt" firstAttribute="height" secondItem="ZrC-Hr-nOX" secondAttribute="height" id="Omf-rX-7Rb"/>
                             <constraint firstItem="f5P-oq-Riw" firstAttribute="top" secondItem="Dwg-M2-mJt" secondAttribute="bottom" constant="5" id="PtI-c6-Ofn"/>
                             <constraint firstItem="YX8-Az-U4w" firstAttribute="top" secondItem="4aY-Tm-N11" secondAttribute="bottom" constant="14" id="RFC-gg-4LR"/>
                             <constraint firstItem="5Kc-WG-FBJ" firstAttribute="centerX" secondItem="M3X-AE-Ld7" secondAttribute="centerX" id="Tq9-G1-0Za"/>
                             <constraint firstItem="gRV-de-LKH" firstAttribute="top" secondItem="Igj-03-wpN" secondAttribute="bottom" constant="14" id="XUe-fq-N8M"/>
+                            <constraint firstItem="aWg-h1-bQe" firstAttribute="top" secondItem="js6-wN-Pdp" secondAttribute="bottom" constant="38" id="YSd-yW-D7f"/>
                             <constraint firstItem="js6-wN-Pdp" firstAttribute="height" secondItem="0aY-3d-T43" secondAttribute="height" id="YUg-Rw-D1o"/>
                             <constraint firstItem="Igj-03-wpN" firstAttribute="width" secondItem="YX8-Az-U4w" secondAttribute="width" id="ZTp-UO-2E1"/>
                             <constraint firstItem="YX8-Az-U4w" firstAttribute="height" secondItem="4aY-Tm-N11" secondAttribute="height" id="aZe-gw-LHK"/>
@@ -206,12 +249,16 @@
                             <constraint firstItem="YX8-Az-U4w" firstAttribute="centerX" secondItem="4aY-Tm-N11" secondAttribute="centerX" id="fW6-yM-bEs"/>
                             <constraint firstItem="Dwg-M2-mJt" firstAttribute="centerX" secondItem="ZrC-Hr-nOX" secondAttribute="centerX" id="fiE-1M-NX5"/>
                             <constraint firstItem="gRV-de-LKH" firstAttribute="centerX" secondItem="Igj-03-wpN" secondAttribute="centerX" id="fwR-gR-NFj"/>
+                            <constraint firstItem="Inj-fN-InB" firstAttribute="top" secondItem="LBY-jc-qsn" secondAttribute="bottom" constant="7" id="i7P-A0-HjS"/>
+                            <constraint firstItem="aWg-h1-bQe" firstAttribute="height" secondItem="js6-wN-Pdp" secondAttribute="height" id="krN-wI-DEe"/>
                             <constraint firstItem="Dwg-M2-mJt" firstAttribute="top" secondItem="ZrC-Hr-nOX" secondAttribute="bottom" constant="5" id="lMp-2n-4Ob"/>
                             <constraint firstItem="gRV-de-LKH" firstAttribute="height" secondItem="Igj-03-wpN" secondAttribute="height" id="o1l-fd-Pzl"/>
                             <constraint firstItem="LBY-jc-qsn" firstAttribute="centerX" secondItem="5Kc-WG-FBJ" secondAttribute="centerX" id="pJx-DX-UNF"/>
                             <constraint firstItem="4aY-Tm-N11" firstAttribute="centerX" secondItem="tcx-9g-ffy" secondAttribute="centerX" constant="-76" id="qCX-g4-TTU"/>
+                            <constraint firstItem="aWg-h1-bQe" firstAttribute="centerX" secondItem="js6-wN-Pdp" secondAttribute="centerX" id="qOB-a0-rS6"/>
                             <constraint firstItem="4aY-Tm-N11" firstAttribute="top" secondItem="fJU-bU-clj" secondAttribute="bottom" constant="41" id="r5a-lB-gQC"/>
                             <constraint firstItem="js6-wN-Pdp" firstAttribute="centerX" secondItem="0aY-3d-T43" secondAttribute="centerX" id="rNA-vG-dAe"/>
+                            <constraint firstItem="K1v-aM-9B4" firstAttribute="top" secondItem="rmy-IQ-uO5" secondAttribute="bottom" constant="3" id="s6Y-H2-geH"/>
                             <constraint firstItem="YX8-Az-U4w" firstAttribute="width" secondItem="4aY-Tm-N11" secondAttribute="width" id="sv9-ZV-sal"/>
                             <constraint firstItem="0aY-3d-T43" firstAttribute="height" secondItem="gRV-de-LKH" secondAttribute="height" id="tio-oh-ZPW"/>
                             <constraint firstItem="js6-wN-Pdp" firstAttribute="top" secondItem="0aY-3d-T43" secondAttribute="bottom" constant="40" id="vGF-7f-G9D"/>
@@ -221,6 +268,7 @@
                     </view>
                     <connections>
                         <outlet property="car" destination="5Kc-WG-FBJ" id="3FI-So-ex5"/>
+                        <outlet property="coursesTable" destination="Inj-fN-InB" id="Kdj-2G-a6B"/>
                         <outlet property="dateOfBirth" destination="f5P-oq-Riw" id="C1s-Ht-L5z"/>
                         <outlet property="firstName" destination="ZrC-Hr-nOX" id="lPf-u8-3oG"/>
                         <outlet property="lastName" destination="Dwg-M2-mJt" id="QaE-B7-Mvl"/>

@@ -13,8 +13,9 @@
 #import "AECourse.h"
 #import "AECar.h"
 
-@interface StudentDetailViewController () <UIPickerViewDataSource, UIPickerViewDelegate> {
+@interface StudentDetailViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate> {
     NSArray *universitiesList;
+    NSArray *coursesList;
     AEUniversity *currentUniversity;
 }
 
@@ -26,6 +27,7 @@
     [super viewDidLoad];
     
     universitiesList = [[AEDataManager sharedManager] allUniversitiesFromDatabase];
+    coursesList = [self.student.university.courses allObjects];
     
     self.firstName.text = self.student.firstName;
     self.lastName.text = self.student.lastName;
@@ -48,6 +50,8 @@
     
     self.university.layer.borderColor = [UIColor grayColor].CGColor;
     self.university.layer.borderWidth = 0.5;
+    
+    self.coursesTable.allowsMultipleSelection = YES;
     
     if (self.student) {
         self.navigationItem.title = [NSString stringWithFormat:@"%@ %@", self.student.firstName, self.student.lastName];
@@ -88,6 +92,32 @@
     return tView;
 }
 
+#pragma mark - Table View
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [coursesList count];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"courseCell" forIndexPath:indexPath];
+    AECourse *course = coursesList[indexPath.row];
+    cell.textLabel.text = course.name;
+    
+    for (AECourse *studentCourse in self.student.courses) {
+        if ([course.name isEqualToString:studentCourse.name]) {
+            [self.coursesTable selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        }
+    }
+
+    return cell;
+    
+}
+
+
+#pragma mark - Actions
+
 - (IBAction)saveChanges:(id)sender {
     
     NSManagedObjectContext *context = [[AEDataManager sharedManager] managedObjectContext];
@@ -125,5 +155,7 @@
     
     [self.navigationController popViewControllerAnimated:YES];    
 }
+
+//NSArray *selectedCells = [self.tableView indexPathsForSelectedRows];
 
 @end

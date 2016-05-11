@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *score;
 @property (weak, nonatomic) IBOutlet UITextField *car;
 @property (weak, nonatomic) IBOutlet UIPickerView *university;
+@property (weak, nonatomic) IBOutlet UITableView *coursesTable;
 
 @property (strong, nonatomic) AEStudent* student;
 
