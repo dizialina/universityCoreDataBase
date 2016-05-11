@@ -17,7 +17,7 @@
 @interface UniversitiesViewController () {
     
     NSString *newObjectName;
-    NSMutableArray *newStudentProperties;
+    NSMutableDictionary *newStudentProperties;
     UIAlertAction *currentCreateAction;
 
 }
@@ -86,9 +86,25 @@
         case kCourse: {
             
             AEStudent *newStudent = [NSEntityDescription insertNewObjectForEntityForName:@"AEStudent" inManagedObjectContext:context];
-            newStudent.firstName = @"Aaaaa";
-            newStudent.lastName = @"Bbbbb";
+            newStudent.firstName = [newStudentProperties objectForKey:@"firstName"];
+            newStudent.lastName = [newStudentProperties objectForKey:@"lastName"];
+            
+            newStudent.score = [NSNumber numberWithFloat:[[newStudentProperties objectForKey:@"score"] floatValue]];
+            
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"dd.MM.yyyy"];
+            newStudent.dateOfBirth = [formatter dateFromString:[newStudentProperties objectForKey:@"dateOfBirth"]];
+            
+            NSString *newCarModel = [newStudentProperties objectForKey:@"car"];
+            if (newCarModel.length > 0) {
+                AECar *newCar = [NSEntityDescription insertNewObjectForEntityForName:@"AECar" inManagedObjectContext:context];
+                newCar.model = newCarModel;
+                newStudent.car = newCar;
+            }
+
             [newStudent addCoursesObject:self.currentCourse];
+            newStudentProperties = nil;
+            newObjectName = nil;
             break;
         }
     }
@@ -262,6 +278,27 @@
     
     UIAlertAction *createAction = [UIAlertAction actionWithTitle:doneTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         newObjectName = alertController.textFields.firstObject.text;
+        
+        if (self.dataMode == kCourse) {
+            newStudentProperties = [[NSMutableDictionary alloc] init];
+            /*NSString *firstName = alertController.textFields[0].text;
+            NSString *lastName = alertController.textFields[1].text;
+            NSString *score = alertController.textFields[2].text;
+            NSString *dateOfBirth = alertController.textFields[3].text;
+            NSString *car = alertController.textFields[4].text;
+            [newStudentProperties setObject:firstName forKey:@"firstName"];
+            [newStudentProperties setObject:lastName forKey:@"lastName"];
+            [newStudentProperties setObject:score forKey:@"score"];
+            [newStudentProperties setObject:dateOfBirth forKey:@"dateOfBirth"];
+            [newStudentProperties setObject:car forKey:@"car"];
+             */
+            [newStudentProperties setObject:alertController.textFields[0].text forKey:@"firstName"];
+            [newStudentProperties setObject:alertController.textFields[1].text forKey:@"lastName"];
+            [newStudentProperties setObject:alertController.textFields[2].text forKey:@"score"];
+            [newStudentProperties setObject:alertController.textFields[3].text forKey:@"dateOfBirth"];
+            [newStudentProperties setObject:alertController.textFields[4].text forKey:@"car"];
+        }
+        
         [self insertNewObject];
     }];
     
@@ -276,26 +313,22 @@
         textField.placeholder = @"Object name";
         [textField addTarget:self action:@selector(audioFileNameDidChange:) forControlEvents:UIControlEventEditingChanged];
     }];
-    /*
+    
     if (self.dataMode == kCourse) {
         [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-            textField.placeholder = @"Object name";
-            [textField addTarget:self action:@selector(audioFileNameDidChange:) forControlEvents:UIControlEventEditingChanged];
+            textField.placeholder = @"Object last name";
         }];
         [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-            textField.placeholder = @"Object name";
-            [textField addTarget:self action:@selector(audioFileNameDidChange:) forControlEvents:UIControlEventEditingChanged];
+            textField.placeholder = @"Object score";
         }];
         [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-            textField.placeholder = @"Object name";
-            [textField addTarget:self action:@selector(audioFileNameDidChange:) forControlEvents:UIControlEventEditingChanged];
+            textField.placeholder = @"Date of birth in format dd.MM.yyyy";
         }];
         [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-            textField.placeholder = @"Object name";
-            [textField addTarget:self action:@selector(audioFileNameDidChange:) forControlEvents:UIControlEventEditingChanged];
+            textField.placeholder = @"Object car model";
         }];
     }
-    */
+    
     [self presentViewController:alertController animated:YES completion:nil];
     
 }
