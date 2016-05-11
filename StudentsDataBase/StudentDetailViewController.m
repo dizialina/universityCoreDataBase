@@ -27,8 +27,17 @@
     [super viewDidLoad];
     
     universitiesList = [[AEDataManager sharedManager] allUniversitiesFromDatabase];
-    coursesList = [self.student.university.courses allObjects];
     
+    NSArray *unsortedCoursesList;
+    if (self.student) {
+        unsortedCoursesList = [self.student.university.courses allObjects];
+    } else {
+        AEUniversity *university = universitiesList[[self.university selectedRowInComponent:0]];
+        unsortedCoursesList = [university.courses allObjects];
+    }
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    coursesList = [unsortedCoursesList sortedArrayUsingDescriptors:@[sortDescriptor]];
+
     self.firstName.text = self.student.firstName;
     self.lastName.text = self.student.lastName;
     self.score.text = [NSString stringWithFormat:@"%.2f", [self.student.score floatValue]];
@@ -77,6 +86,12 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     currentUniversity = universitiesList[row];
+    
+    AEUniversity *university = universitiesList[[self.university selectedRowInComponent:0]];
+    NSArray *unsortedCoursesList = [university.courses allObjects];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    coursesList = [unsortedCoursesList sortedArrayUsingDescriptors:@[sortDescriptor]];
+    [self.coursesTable reloadData];
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
@@ -128,7 +143,12 @@
         [context refreshObject:self.student mergeChanges:NO];
     }
     
-    self.student.firstName = self.firstName.text;
+    if (self.firstName.text.length > 0) {
+        self.student.firstName = self.firstName.text;
+    } else {
+        self.student.firstName = @"Noname";
+    }
+    
     self.student.lastName = self.lastName.text;
     
     self.student.score = [NSNumber numberWithFloat:[self.score.text floatValue]];
@@ -146,6 +166,14 @@
     
     self.student.university = universitiesList[[self.university selectedRowInComponent:0]];
     
+    NSArray *selectedCells = [self.coursesTable indexPathsForSelectedRows];
+    NSSet *courses = self.student.courses;
+    [self.student removeCourses:courses];
+    for (NSIndexPath *indexPath in selectedCells) {
+        AECourse *course = coursesList[indexPath.row];
+        [self.student addCoursesObject:course];
+    }
+    
     // Save the context.
     NSError *error = nil;
     if (![context save:&error]) {
@@ -156,6 +184,5 @@
     [self.navigationController popViewControllerAnimated:YES];    
 }
 
-//NSArray *selectedCells = [self.tableView indexPathsForSelectedRows];
 
 @end

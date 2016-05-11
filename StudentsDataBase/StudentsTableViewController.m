@@ -9,6 +9,7 @@
 #import "StudentsTableViewController.h"
 #import "StudentDetailViewController.h"
 #import "AEDataManager.h"
+#import "AEUniversity.h"
 #import "AEStudent.h"
 #import "AECar.h"
 
@@ -105,7 +106,7 @@
     
     AEStudent *student = (AEStudent*) object;
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", student.firstName, student.lastName];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"score: %.2f", [student.score floatValue]];
+    cell.detailTextLabel.text = student.university.name;
     
 }
 
