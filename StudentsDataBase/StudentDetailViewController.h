@@ -12,13 +12,15 @@
 
 @interface StudentDetailViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *name;
-@property (weak, nonatomic) IBOutlet UILabel *dateOfBirth;
-@property (weak, nonatomic) IBOutlet UILabel *score;
-@property (weak, nonatomic) IBOutlet UILabel *car;
-@property (weak, nonatomic) IBOutlet UITextView *courses;
-
+@property (weak, nonatomic) IBOutlet UITextField *firstName;
+@property (weak, nonatomic) IBOutlet UITextField *lastName;
+@property (weak, nonatomic) IBOutlet UITextField *dateOfBirth;
+@property (weak, nonatomic) IBOutlet UITextField *score;
+@property (weak, nonatomic) IBOutlet UITextField *car;
+@property (weak, nonatomic) IBOutlet UIPickerView *university;
 
 @property (strong, nonatomic) AEStudent* student;
+
+- (IBAction)saveChanges:(id)sender;
 
 @end

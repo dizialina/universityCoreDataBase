@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataViewController.h"
 
-@interface StudentsTableViewController : UITableViewController
+@interface StudentsTableViewController : CoreDataViewController
 
 @end

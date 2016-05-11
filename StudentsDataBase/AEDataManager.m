@@ -117,9 +117,9 @@ static NSString* carModelNames[] = {
     
     [university addCourses:[NSSet setWithArray:newCourses]];
 
-    // create 500 random students, add every student a car (chance 50%), and add them random number of courses
+    // create 200 random students, add every student a car (chance 50%), and add them random number of courses
     
-    for (int i = 0; i < 500; i++) {
+    for (int i = 0; i < 200; i++) {
         
         AEStudent *student = [self addRandomStudent];
         if (arc4random_uniform(2)) {
@@ -157,6 +157,23 @@ static NSString* carModelNames[] = {
 
     return result;
 }
+
+- (NSArray*)allUniversitiesFromDatabase {
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"AEUniversity" inManagedObjectContext:self.managedObjectContext]];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    [request setSortDescriptors:@[sortDescriptor]];
+    
+    NSError *requestError = nil;
+    NSArray *result = [self.managedObjectContext executeFetchRequest:request error:&requestError];
+    if (requestError) {
+        NSLog(@"Error writing to database: %@", [requestError localizedDescription]);
+    }
+    
+    return result;
+}
+
 
 - (void)deleteAllObjectsFromDatabase {
     

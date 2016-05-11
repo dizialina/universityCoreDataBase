@@ -134,10 +134,10 @@
 				84A5E94A1CE119C1004ED04F /* CoreDataViewController.m */,
 				84A5E9181CE1156F004ED04F /* UniversitiesViewController.h */,
 				84A5E9191CE1156F004ED04F /* UniversitiesViewController.m */,
-				84A5E94C1CE13B11004ED04F /* StudentDetailViewController.h */,
-				84A5E94D1CE13B11004ED04F /* StudentDetailViewController.m */,
 				84A5E91D1CE115F7004ED04F /* StudentsTableViewController.h */,
 				84A5E91E1CE115F7004ED04F /* StudentsTableViewController.m */,
+				84A5E94C1CE13B11004ED04F /* StudentDetailViewController.h */,
+				84A5E94D1CE13B11004ED04F /* StudentDetailViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

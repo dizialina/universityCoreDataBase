@@ -7,21 +7,44 @@
 //
 
 #import "StudentsTableViewController.h"
+#import "StudentDetailViewController.h"
+#import "AEDataManager.h"
+#import "AEStudent.h"
+#import "AECar.h"
 
-@interface StudentsTableViewController ()
+@interface StudentsTableViewController () {
+    
+    NSMutableDictionary *newStudentProperties;
+    UIAlertAction *currentCreateAction;
+    
+}
 
 @end
 
 @implementation StudentsTableViewController
 
+@synthesize fetchedResultsController = _fetchedResultsController;
+@synthesize managedObjectContext = _managedObjectContext;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.navigationItem.title = @"Students";
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
+    self.navigationItem.rightBarButtonItems = @[self.editButtonItem, addButton];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,68 +52,81 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+- (void)insertNewObject {
+    [self performSegueWithIdentifier:@"studentDetail" sender:self];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
-}
+# pragma mark - Getters
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (NSManagedObjectContext*) managedObjectContext {
     
-    // Configure the cell...
+    if (!_managedObjectContext) {
+        _managedObjectContext = [[AEDataManager sharedManager] managedObjectContext];
+    }
+    return _managedObjectContext;
+}
+
+# pragma mark - Fetched results controller
+
+- (NSFetchedResultsController *)fetchedResultsController {
     
-    return cell;
-}
-*/
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AEStudent" inManagedObjectContext:self.managedObjectContext];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES];
+    NSSortDescriptor *secondSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
+    [fetchRequest setSortDescriptors:@[sortDescriptor, secondSortDescriptor]];
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    
+    [fetchRequest setEntity:entity];
+    [fetchRequest setFetchBatchSize:20];
+    
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"university.name" cacheName:nil];
+    aFetchedResultsController.delegate = self;
+    self.fetchedResultsController = aFetchedResultsController;
+    
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    return _fetchedResultsController;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+# pragma mark - Table view
+
+- (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)object {
+    
+    AEStudent *student = (AEStudent*) object;
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", student.firstName, student.lastName];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"score: %.2f", [student.score floatValue]];
+    
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+
+- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    return [sectionInfo name];
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"studentDetail"]) {
+        
+        StudentDetailViewController *vc = [segue destinationViewController];
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        vc.student = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
+    }
+    
 }
-*/
 
 @end

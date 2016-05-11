@@ -19,6 +19,7 @@
 - (void)addStudentsToDatabaseUniversityNamed:(NSString*) universityName;
 - (void)printAllObjectsFromDatabase;
 - (void)deleteAllObjectsFromDatabase;
+- (NSArray*)allUniversitiesFromDatabase;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
